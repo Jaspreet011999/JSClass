@@ -1,6 +1,6 @@
 // functions are great
 function doMath (a,b){ 
-    let result = a+b 
+     result = a+b 
     return result
     //console.log(`this is the result ${a+b}`)
     //console.log(`this is the result ${a-b}`)
@@ -8,5 +8,5 @@ function doMath (a,b){
     //console.log(`this is the result ${a/b}`)
 
 }
-let result =doMath(3,5)
+doMath(10,20)
 console.log(`this is the result ${result}`)
