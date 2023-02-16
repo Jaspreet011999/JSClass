@@ -1,4 +1,4 @@
-function salesTotal(){
+let salesTotal = () => {
     let price = 7.89;
     let quantity = 4;
     productPrice = price * quantity;
