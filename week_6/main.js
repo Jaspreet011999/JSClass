@@ -1,10 +1,8 @@
-let salesTotal = () => {
-    let price = 7.89;
-    let quantity = 4;
-    productPrice = price * quantity;
-    salesTotalValue = productPrice. toFixed(2);
-    return salesTotal;
+let countNumbers = (x,y) => {
+    let price = x - y
+    let productPrice = price * 15
+    return productPrice
 
 }
-salesTotal();
-console.log(salesTotalValue);
+let presentValue = countNumbers(7.89,4);
+console.log(presentValue);
