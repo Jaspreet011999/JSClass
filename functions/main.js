@@ -2,9 +2,9 @@ function salesTotal(){
     let price = 7.89;
     let quantity = 4;
     let productPrice = price * quantity;
-   salesTotalValue = producttotal toFixed(2);
-    return salesTotal;
+    let salesTotalValue = productPrice .toFixed(2);
+    return salesTotalValue
 
 }
-salesTotal();
-console.log(salesTotalValue);
+let futurevalue = salesTotal(7.89,4)
+console.log(futurevalue);
