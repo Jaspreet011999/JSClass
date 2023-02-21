@@ -1,6 +1,4 @@
-function salesTotal(){
-    let price = 7.89;
-    let quantity = 4;
+function salesTotal(price,quantity){
     let productPrice = price * quantity;
     let salesTotalValue = productPrice .toFixed(2);
     return salesTotalValue
