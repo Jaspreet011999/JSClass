@@ -1,12 +1,10 @@
-// functions are great
-function doMath (a,b){ 
-     result = a+b 
-    return result
-    //console.log(`this is the result ${a+b}`)
-    //console.log(`this is the result ${a-b}`)
-    //console.log(`this is the result ${a*b}`)
-    //console.log(`this is the result ${a/b}`)
+function salesTotal(){
+    let price = 7.89;
+    let quantity = 4;
+    let productPrice = price * quantity;
+   salesTotalValue = producttotal toFixed(2);
+    return salesTotal;
 
 }
-doMath(10,20)
-console.log(`this is the result ${result}`)
+salesTotal();
+console.log(salesTotalValue);
