@@ -12,7 +12,7 @@ const myTripCost = []
 }
 
 
-const trackMPGCost = (miles ,gallons, price ) => {
+const trackMPGandCost = (miles ,gallons, price ) => {
   const MPG = miles/gallons
   const tripCost = MPG * price
   myMPG.push(MPG)
@@ -22,25 +22,38 @@ const trackMPGCost = (miles ,gallons, price ) => {
  
 
 }
-const calculateAvg = () => {
-  let totalMPG = 0
+const calculateMPGAvg = () => {
+  let sumMPG = 0
+ 
     // const avgMPG = (myMPG[0] + myMPG[2])/2
     // updateDOM(`Average Miles per gallon is ${avgMPG}`)
     for(let i = 0;i < myMPG.length ; i++){
-    totalMPG = totalMPG + myMPG[i]
+    sumMPG =sumMPG + myMPG[i]
+   
     }
-    let avgMPG = totalMPG/myMPG.length 
+    let avgMPG = sumMPG/myMPG.length
+    
     updateDOM (`Average MPG is ${avgMPG}`)
+   
 
+}
+const calculateAvgTripCost = () => {
+  let sumTripCost = 0
+  for(let i = 0;i < myTripCost.length ; i++){
+    sumTripCost =sumTripCost + myTripCost[i]
+  }
+let AvgTripCost = sumTripCost/myTripCost.length
+updateDOM(`Average TripCost is ${AvgTripCost}`)
 }
 
 
+//commit message "my code for cal average cost"
 
-trackMPGCost(200,20,4.59)
-trackMPGCost(300,10,3.59)
-trackMPGCost(500,30,2.59)
-trackMPGCost(800,70,1.59)
-trackMPGCost(600,40,6.59)
-trackMPGCost(800,90,9.59)
-calculateAvg()
+trackMPGandCost(200,20,4.59)
+trackMPGandCost(300,10,3.59)
+trackMPGandCost(500,30,2.59)
+trackMPGandCost(800,70,1.59)
+trackMPGandCost(600,40,6.59)
+trackMPGandCost(800,90,9.59)
+calculateAvgTripCost()
 
