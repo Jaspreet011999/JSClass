@@ -49,10 +49,24 @@ let avgMPG = Math.round (sumMPG/myMPG.length)
 let avgTripCost = Math.round (sumTripCost/myTripCost.length)
 updateDOM(`Average MPG is ${avgMPG}`)
 updateDOM(`Average TripCost is ${avgTripCost}`)
+
 }
 
 
-//commit message "my code for cal average cost"
+const calculateAvgValue = () => {
+  let valueCost = 0
+for( let i = 0 ; i < myTripCost. length; i++)
+valueCost += myTripCost [i]
+let avgValue = valueCost/myTripCost.length
+updateDOM(`Average ValueCost is ${avgValue}`)
+
+
+}
+
+
+
+
+
 
 trackMPGandCost(200,20,4.59)
 trackMPGandCost(300,10,3.59)
@@ -60,5 +74,5 @@ trackMPGandCost(500,30,2.59)
 trackMPGandCost(800,70,1.59)
 trackMPGandCost(600,40,6.59)
 trackMPGandCost(800,90,9.59)
-calculateAvg()
+calculateAvgValue()
 
