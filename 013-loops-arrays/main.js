@@ -1,7 +1,7 @@
 //update the DOM
 
-const myMPG = []
-const myTripCost = []
+const MY_MPG = []
+const MY_TRIP_COST = []
 
  const updateDOM = (input) => {
   const divEl = document.querySelector('#output')
@@ -15,38 +15,47 @@ const myTripCost = []
 const trackMPGandCost = (miles ,gallons, price ) => {
   const MPG = miles/gallons
   const tripCost = MPG * price
-  myMPG.push(MPG)
-   myTripCost.push(tripCost)
+  MY_MPG.push(MPG)
+   MY_TRIP_COST.push(tripCost)
 
-  updateDOM(`Your MPG is ${myMPG} miles per gallon and your trip cost is $${myTripCost}`);
+   
+
+  updateDOM(`Your MPG is ${MY_MPG} miles per gallon and your trip cost is $${MY_TRIP_COST}`);
  
+
+}
+
+const calculateSum = (arr) => {
+  let sum = 0
+  for (let i=0; i < arr.length;i++) {
+    sum = sum + arr[i]
+
+  }
+  return sum
+
 
 }
 const calculateMPGAvg = () => {
   let sumMPG = 0
  
-    // const avgMPG = (myMPG[0] + myMPG[2])/2
+    // const avgMPG = (MY_MPG[0] + MY_MPG[2])/2
     // updateDOM(`Average Miles per gallon is ${avgMPG}`)
-    for(let i = 0;i < myMPG.length ; i++){
-    sumMPG =sumMPG + myMPG[i]
+    for(let i = 0;i < MY_MPG.length ; i++){
+    sumMPG =sumMPG + MY_MPG[i]
 
    
     }
-    let avgMPG = sumMPG/myMPG.length
+    let avgMPG = sumMPG/MY_MPG.length
     
     updateDOM (`Average MPG is ${avgMPG}`)
    
 
 }
 const calculateAvg = () => {
-  let sumMPG = 0
-  let sumTripCost = 0
-  for(let i = 0;i < myTripCost.length ; i++){
-    sumMPG =sumMPG + myMPG[i]
-    sumTripCost = sumTripCost + myTripCost[i]
-  }
-let avgMPG = Math.round (sumMPG/myMPG.length)
-let avgTripCost = Math.round (sumTripCost/myTripCost.length)
+  let sumMPG = calculateSum(MY_MPG)
+  let sumTripCost = Sum(MY_TRIP_COST)
+let avgMPG = Math.round (sumMPG/MY_MPG.length)
+let avgTripCost = Math.round (sumTripCost/MY_TRIP_COST.length)
 updateDOM(`Average MPG is ${avgMPG}`)
 updateDOM(`Average TripCost is ${avgTripCost}`)
 
@@ -55,9 +64,9 @@ updateDOM(`Average TripCost is ${avgTripCost}`)
 
 const calculateAvgValue = () => {
   let valueCost = 0
-for( let i = 0 ; i < myTripCost. length; i++)
-valueCost += myTripCost [i]
-let avgValue = valueCost/myTripCost.length
+for( let i = 0 ; i < MY_TRIP_COST. length; i++)
+valueCost += MY_TRIP_COST [i]
+let avgValue = valueCost/MY_TRIP_COST.length
 updateDOM(`Average ValueCost is ${avgValue}`)
 
 
