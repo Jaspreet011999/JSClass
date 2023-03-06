@@ -1,3 +1,6 @@
+const FormEL = document.getElementById('form-input')
+
+
 //update the DOM
 
 const MY_MPG = []
@@ -54,13 +57,16 @@ const calculateSum = (arr) => {
   
   
   
+  FormEL.addEventListener('submit',(e) =>{
+     console.log(e)
+
+  })
   
   
-  
-  trackMPGandCost(200,20,4.59)
-  trackMPGandCost(300,10,3.59)
-  trackMPGandCost(500,30,2.59)
-  trackMPGandCost(800,70,1.59)
-  trackMPGandCost(600,40,6.59)
-  trackMPGandCost(800,90,9.59)
-  calculateAvgValue()
+  //trackMPGandCost(200,20,4.59)
+  //trackMPGandCost(300,10,3.59)
+  //trackMPGandCost(500,30,2.59)
+  //trackMPGandCost(800,70,1.59)
+  //trackMPGandCost(600,40,6.59)
+  //trackMPGandCost(800,90,9.59)
+  //calculateAvgValue()
