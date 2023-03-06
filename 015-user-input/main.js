@@ -1,4 +1,4 @@
-const FormEL = document.getElementById('form-input')
+const FORM_EL = document.getElementById('form-input')
 
 
 //update the DOM
@@ -58,7 +58,7 @@ const trackMPGandCost = (miles ,gallons, price ) => {
   
   
   
-  FormEL.addEventListener('submit',(e) =>{
+  FORM_EL.addEventListener('submit',(e) =>{
     e.preventDefault()
     const miles = parseInt(e.target.miles.value)
     const gallons = parseInt (e.target.gallons.value)
