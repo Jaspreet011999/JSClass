@@ -15,21 +15,19 @@ const MY_TRIP_COST = []
 }
 
 
-const trackMPGandCost = (miles ,gallons, price ) => {
-  const MPG = miles/gallons
-  const tripCost = MPG * price
-  MY_MPG.push(MPG)
-   MY_TRIP_COST.push(tripCost)
+const calculateSpeed = (distance ,time) => {
+  const speed =distance/time
+  
 
    
 
-  updateDOM(`Your MPG is ${MY_MPG} miles per gallon and your trip cost is $${MY_TRIP_COST}`);
+  updateDOM(`${distance} i will take ${time} seconds was speed ${speed}`)
  
 
 }
 
-const calculateSum = (arr) => {
-    let sum = 0
+//const calculateSum = (arr) => {
+   // let sum = 0
     //for (let i=0; i < arr.length;i++) {
      // sum = sum + arr[i]
   
@@ -38,37 +36,38 @@ const calculateSum = (arr) => {
      // sum += element
       
    // });
-    for (value of arr) {
-      sum += value
-    }
-    return sum
-  }
+    //for (value of arr) {
+     // sum += value
+    //}
+   // return sum
+ // }
 
-
-  const calculateAvgValue = () => {
-    let valueCost = 0
-  for( let i = 0 ; i < MY_TRIP_COST. length; i++)
-  valueCost += MY_TRIP_COST [i]
-  let avgValue = valueCost/MY_TRIP_COST.length
-  updateDOM(`Average ValueCost is ${avgValue}`)
-  
-  
-  }
-  
-  
-  
  
-     FormEL.addEventListener('submit',(e) =>{
-      e.preventDefault()
-      const miles = parseInt(e.total.miles.value)
-      const gallons = parseInt (e.total.miles. value)
-      const price = parseInt (e.total.price.value)
+
+  //const calculateAvgValue = () => {
+   // let valueCost = 0
+ // for( let i = 0 ; i < MY_TRIP_COST. length; i++)
+ // valueCost += MY_TRIP_COST [i]
+  //let avgValue = valueCost/MY_TRIP_COST.length
+  //updateDOM(`Average ValueCost is ${avgValue}`)
   
-      updateDOMtrackMPGandCost(miles,gallons,price)
+  
+ // }
+  
+  
+  
+  FormEL.addEventListener('submit',(e) =>{
+    e.preventDefault()
+    const distance= parseInt (e.target.distance.value)
+    const time= parseInt (e.target.time.value)
+    
+
+   calculateSpeed(distance,time)
+
   })
   
   
-  //trackMPGandCost(200,20,4.59)
+  //tracMPGandCost(200,20,4.59)
   //trackMPGandCost(300,10,3.59)
   //trackMPGandCost(500,30,2.59)
   //trackMPGandCost(800,70,1.59)
