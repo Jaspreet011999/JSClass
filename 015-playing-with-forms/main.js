@@ -28,8 +28,8 @@ const trackMPGandCost = (miles ,gallons, price ) => {
 
 }
 
-//const calculateSum = (arr) => {
-   // let sum = 0
+const calculateSum = (arr) => {
+    let sum = 0
     //for (let i=0; i < arr.length;i++) {
      // sum = sum + arr[i]
   
@@ -38,34 +38,33 @@ const trackMPGandCost = (miles ,gallons, price ) => {
      // sum += element
       
    // });
-    //for (value of arr) {
-     // sum += value
-    //}
-   // return sum
- // }
+    for (value of arr) {
+      sum += value
+    }
+    return sum
+  }
 
+
+  const calculateAvgValue = () => {
+    let valueCost = 0
+  for( let i = 0 ; i < MY_TRIP_COST. length; i++)
+  valueCost += MY_TRIP_COST [i]
+  let avgValue = valueCost/MY_TRIP_COST.length
+  updateDOM(`Average ValueCost is ${avgValue}`)
+  
+  
+  }
+  
+  
+  
  
-
-  //const calculateAvgValue = () => {
-   // let valueCost = 0
- // for( let i = 0 ; i < MY_TRIP_COST. length; i++)
- // valueCost += MY_TRIP_COST [i]
-  //let avgValue = valueCost/MY_TRIP_COST.length
-  //updateDOM(`Average ValueCost is ${avgValue}`)
+     FormEL.addEventListener('submit',(e) =>{
+      e.preventDefault()
+      const miles = parseInt(e.total.miles.value)
+      const gallons = parseInt (e.total.miles. value)
+      const price = parseInt (e.total.price.value)
   
-  
- // }
-  
-  
-  
-  FormEL.addEventListener('submit',(e) =>{
-    e.preventDefault()
-    const miles = parseInt(e.target.miles.value)
-    const gallons = parseInt (e.target.gallons.value)
-    const price = parseInt (e.target.price.value)
-
-    trackMPGandCost(miles,gallons,price)
-
+      updateDOMtrackMPGandCost(miles,gallons,price)
   })
   
   
