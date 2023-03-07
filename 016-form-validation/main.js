@@ -80,6 +80,7 @@ const trackMPGandCost = (miles ,gallons, price ) => {
         
     } else {
         trackMPGandCost(miles,gallons,price)
+        ERR.textContent = "" 
     }
 })
     
