@@ -71,10 +71,13 @@ const trackMPGandCost = (miles ,gallons, price ) => {
     }
     if(price > 10000){
        errMsg.push('Make sure!!!??? I think this should be error... please check it again')
-
+       setTimeout(() => {
+        ERR.textContent = "" 
+       }, 3000);
     }
     if(errMsg.length > 0) {
         ERR.textContent = errMsg
+        
     } else {
         trackMPGandCost(miles,gallons,price)
     }
