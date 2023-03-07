@@ -65,8 +65,12 @@ const trackMPGandCost = (miles ,gallons, price ) => {
     const miles = parseInt(e.target.miles.value)
     const gallons = parseInt (e.target.gallons.value)
     const price = parseInt (e.target.price.value)
-    if( miles === 0) {
+    if( miles === 0 || gallons === 0 || price === 0){
      errMsg.push('check the input number but not 0!!')
+
+    }
+    if(price > 10000){
+       errMsg.push('Make sure!!!??? I think this should be error... please check it again')
 
     }
     if(errMsg.length > 0) {
