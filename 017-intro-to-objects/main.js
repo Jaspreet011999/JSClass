@@ -18,3 +18,20 @@ const myObj = {
 
 const greeting = myObj.mygreeting("wedding");
 console.log(greeting);
+
+const carArr = [];
+const myCar = {
+  make: "toyato",
+  model: "camry",
+  color: ["red", "white"],
+  miles: 3000,
+
+  carinfo: function () {
+    return `${this.make} company loves to make new ${this.model[0]} and is ${
+      this.color
+    } car miles ${3000}`;
+  },
+};
+
+const newcar = myCar.carinfo("racing");
+console.log(newcar);
