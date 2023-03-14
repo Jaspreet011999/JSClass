@@ -14,6 +14,9 @@ const myObj = {
   mygreeting: function (people) {
     return `${this.name} who likes to ${this.hobbies[0]} and is ${this.age}`;
   },
+  increaseLikes: function () {
+    this.likes += 1;
+  },
 };
 
 const greeting = myObj.mygreeting("wedding");
@@ -31,7 +34,20 @@ const myCar = {
       this.color
     } car miles ${3000}`;
   },
+  increaseLikes: function () {
+    this.likes += 1;
+  },
 };
 
+const jaspreetobj = myObj;
+jaspreetobj.increaseLikes();
+console.log(jaspreetobj);
+jaspreetobj.age = 23;
 const newcar = myCar.carinfo("racing");
 console.log(newcar);
+
+console.log(myCar.color.length);
+
+for (key in myCar) {
+  console.log(`key ${key} and value ${myCar[key]}`);
+}
