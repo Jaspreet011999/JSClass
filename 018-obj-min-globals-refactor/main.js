@@ -33,6 +33,13 @@ const mpgObj ={
         this.myMPG.push(MPG)
         this.myTripCost.push(tripCost)
     },
+    calculateSUM: (arr) => {
+        let sum = 0
+        for (value  of arr) {
+            sum += value
+        }
+        return sum
+    },
     calculateAvgValue: function (){
         const sumMPG = this.calculateSUM(this.myMPG)
         const sumTripCost = this.calculateSUM(this.myTripCost)
