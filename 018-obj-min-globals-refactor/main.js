@@ -1,75 +1,76 @@
-// created a variable called FORM and assigned it to the form elemt
-const FORM = document.getElementById("form-input");
-// created a variable called ERR and assigned it to the element with the id of err
+const FORM_EL = document.getElementById("form-input");
 const ERR = document.getElementById("err");
-// created a variable AVG_OUTPUT and assigned it to the element with the id of avg_output
-const AVG_OUTPUT = document.getElementById("avg_output");
 
-// created an object to hold all the methods and variables
+//update the DOM
+
 const mpgObj = {
-  //created an empty array for each the MPG and trip cost
   myMPG: [],
   myTripCost: [],
-  // created a method to update the DOM
-  updateDOM: (input, id) => {
-    // created a variable and assigned it to the element with the id of output
+  trackMPGandCost: function (miles, gallons, price) {
+    const MPG = miles / gallons;
+    const tripCost = MPG * price;
+    mpgObj.myMPG.push(MPG);
+    mpgObj.myTripCost.push(tripCost);
+    mpgObj.updateDOM(
+      `Your MPG is ${mpgObj.myMPG} miles per gallon and your trip cost is ${mpgObj.myTripCost}`
+    );
+  },
+  updateDOM: function (input) {
     const divEl = document.querySelector("#output");
-    // created a variable and assigned it to a new div element
     const j = document.createElement("div");
-    // assigned the text content of the new div element to the input
     j.textContent = input;
-    // appended the new div element to the div element with the id of output
     divEl.appendChild(j);
   },
-  // created a method to calculate
-  trackMPGandCost: function (miles, gallons, price) {
-    // created a variable called MPG and assigned it to the miles divided by the gallons
-    const MPG = Math.round(miles / gallons);
-    // created a variable called tripCost and assigned it to the gallons multiplied by the price
-    const tripCost = Math.round(gallons * price);
-    // created the updateDOM method and passed in the MPG and tripCost variables
-    this.updateDOM(`miles per gallon is ${MPG}and trip cost is ${tripCost}`);
-    this.myMPG.push(MPG);
-    this.myTripCost.push(tripCost);
-  },
-  calculateSUM: (arr) => {
+  calculateSum: function (carTracker) {
     let sum = 0;
-    for (value of arr) {
+    for (let i = 0; i < carTracker.length; i++) {
+      sum = sum + carTracker[i];
+    }
+    carTracker.forEach((element) => {
+      sum += element;
+    });
+    for (value of carTracker) {
       sum += value;
     }
     return sum;
   },
   calculateAvgValue: function () {
-    const sumMPG = this.calculateSUM(this.myMPG);
-    const sumTripCost = this.calculateSUM(this.myTripCost);
-    const avgMPG = Math.round(sumMPG / this.myMPG.length);
-    const avgTripCost = Math.round(sumTripCost / this.myTripCost.length);
-    this.updateDOM(`Average MPG is${avgMPG}`, `#output-avg`);
-    this.updateDOM(`Average Trip Cost is ${avgTripCost}`, `#output-avg`);
-  },
-  validateForm: function (e) {
-    const errMsg = [];
-    const miles = parseInt(e.target.miles.value);
-    const gallons = parseInt(e.target.gallons.value);
-    const price = parseInt(e.target.price.value);
-    if (miles === 0 || gallons === 0 || price === 0) {
-      errMsg.push(`please put another number not zero`);
+    let valueCost = 0;
+    let totalMPG = 0;
+    for (let i = 0; i < mpgObj.myTripCost.length; i++) {
+      totalMPG += mpgObj.myMPG[i];
+      valueCost += mpgObj.myTripCost[i];
     }
-    if (price > 1000) {
-      errMsg.push(`i am thinking this is in error`);
-    }
-    if (errMsg.lenght > 0) {
-      ERR.textContent = errMsg;
-    } else {
-      ERR.textContent = "";
-      AVG_OUTPUT.textContent = "";
-      this.trackMPGandCost(miles, gallons, price);
-      this.calculateAvgValue();
-    }
-    FORM.reset();
+
+    let avgValue = valueCost / mpgObj.myTripCost.length;
+    let avgMPG = totalMPG / mpgObj.myMPG.length;
+    mpgObj.updateDOM(`Average ValueCost is ${avgValue}`);
+    mpgObj.updateDOM(`Average totalMPG is ${avgMPG}`);
   },
 };
-FORM.addEventListener("submit", (e) => {
+
+FORM_EL.addEventListener("submit", (e) => {
   e.preventDefault();
-  mpgObj.validateForm(e);
+  const errMsg = [];
+  const miles = parseInt(e.target.miles.value);
+  const gallons = parseInt(e.target.gallons.value);
+  const price = parseInt(e.target.price.value);
+  if (miles === 0 || gallons === 0 || price === 0) {
+    errMsg.push("check the input number but not 0!!");
+  }
+  if (price > 10000) {
+    errMsg.push(
+      "Make sure!!!??? I think this should be error... please check it again"
+    );
+    setTimeout(() => {
+      ERR.textContent = "";
+    }, 3000);
+  }
+  if (errMsg.length > 0) {
+    ERR.textContent = errMsg;
+  } else {
+    mpgObj.trackMPGandCost(miles, gallons, price);
+    ERR.textContent = "";
+    mpgObj.calculateAvgValue();
+  }
 });
