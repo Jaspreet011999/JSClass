@@ -14,13 +14,17 @@ function updateDOM  (input)  {
   divEl.appendChild(j);
 };
 
-function trackMPGandCost  (obj)  {
-  const MPG = Math.round(obj.miles / obj.gallons);
-  const tripCost = Math.round(obj.gallons * obj.price);
+function trackMPGandCost  (miles, gallons, price)  {
+  const MPG = Math.round(miles / gallons);
+  const tripCost = Math.round(gallons * price);
   updateDOM(`Miles per gallon is ${MPG} and trip cost ${tripCost}`, `#output`);
-  obj.MPG = MPG;
-  obj.tripCost = tripCost;
-  return obj;
+  return {
+    miles: miles,
+    gallons: gallons,
+    price: price,
+    MPG: MPG,
+    tripCost: tripCost,
+  }
 };
 
 
@@ -67,7 +71,7 @@ function isFormValid  (miles, gallons, price) {
 
 function renderTable(){
   const table = document.createElement('table');
-  const headings = ['Miles Driven','Gallons Used','Price Paid','trip MPG','Edit/Delete' ]
+  const headings = ['Miles Driven','Gallons Used','Price Paid','Trip MPG','Trip Cost','Edit/Delete' ]
   const tr = document.createElement('tr')
   headings.forEach(function(heading){
      let th = document.createElement('th')
@@ -77,6 +81,18 @@ function renderTable(){
   console.log(MY_TRIP_COST);
   table.appendChild(tr);
   TABLE_TO_SHOW.appendChild(table);
+
+  MY_TRIP_COST.forEach(function(obj){
+    const tr = document.createElement('tr')
+    for(key in obj){
+      let td = document.createElement('td')
+      td.textContent = obj[key]
+      console.log(td);
+      tr.appendChild(td)
+    }
+    table.appendChild(tr);
+    
+  })
 }
 
 FORM.addEventListener("submit", (e) => {
@@ -88,14 +104,9 @@ FORM.addEventListener("submit", (e) => {
 
   const isValid = isFormValid(miles, gallons, price);
   if (isValid) {
-    const brand_newDataObj = {
-      miles: miles,
-      gallons: gallons,
-      price: price,
-    };
     ERR.textContent = "";
     AVG_OUTPUT.textContent = "";
-    const updateDataObj = trackMPGandCost(brand_newDataObj);
+    const updateDataObj = trackMPGandCost(miles, gallons, price);
     MY_TRIP_COST.push(updateDataObj);
     renderTable();
     calculateAverages();
