@@ -69,6 +69,21 @@ function isFormValid  (miles, gallons, price) {
   }
 };
 
+function createTableRows(table){
+
+  MY_TRIP_COST.forEach(function(obj){
+    const tr = document.createElement('tr')
+    for(key in obj){
+      let td = document.createElement('td')
+      td.textContent = obj[key]
+      console.log(td);
+      tr.appendChild(td)
+    }
+    table.appendChild(tr);
+    
+  })
+}
+
 function renderTable(){
   const table = document.createElement('table');
   const headings = ['Miles Driven','Gallons Used','Price Paid','Trip MPG','Trip Cost','Edit/Delete' ]
@@ -82,17 +97,8 @@ function renderTable(){
   table.appendChild(tr);
   TABLE_TO_SHOW.appendChild(table);
 
-  MY_TRIP_COST.forEach(function(obj){
-    const tr = document.createElement('tr')
-    for(key in obj){
-      let td = document.createElement('td')
-      td.textContent = obj[key]
-      console.log(td);
-      tr.appendChild(td)
-    }
-    table.appendChild(tr);
-    
-  })
+  createTableRows(table);
+  
 }
 
 FORM.addEventListener("submit", (e) => {
