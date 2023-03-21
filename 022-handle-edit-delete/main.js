@@ -87,6 +87,7 @@ function showEditDeleteButtons(index){
 
     deleteButton.addEventListener('click', function(e){
         MY_TRIP_COST.splice(index, 1)
+        renderTable();
         })
     buttons.appendChild(editButton);
     buttons.appendChild(deleteButton)
@@ -116,20 +117,21 @@ function createTableRows(table){
 function renderTable(){
 
   TABLE_TO_SHOW.innerHTML = ''
-  const table = document.createElement('table');
-  const headings = ['Miles Driven','Gallons Used','Price Paid','Trip MPG','Trip Cost','Edit/Delete' ]
-  const tr = document.createElement('tr')
-  headings.forEach(function(heading){
-     let th = document.createElement('th')
-     th.textContent = heading
-     tr.appendChild(th)
-  })
-  console.log(MY_TRIP_COST);
-  table.appendChild(tr);
-  TABLE_TO_SHOW.appendChild(table);
-
-  createTableRows(table);
+  if(MY_TRIP_COST.length !== 0){
+    const table = document.createElement('table');
+    const headings = ['Miles Driven','Gallons Used','Price Paid','Trip MPG','Trip Cost','Edit/Delete' ]
+    const tr = document.createElement('tr')
+    headings.forEach(function(heading){
+       let th = document.createElement('th')
+       th.textContent = heading
+       tr.appendChild(th)
+    })
+    table.appendChild(tr);
+    TABLE_TO_SHOW.appendChild(table);
   
+    createTableRows(table);
+  }
+ 
 }
 
 FORM.addEventListener("submit", (e) => {
