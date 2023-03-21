@@ -78,7 +78,10 @@ function showEditDeleteButtons(index){
     deleteButton.textContent = 'Delete'
 
     editButton.addEventListener('click', function(e){
-    console.log(e.target);
+    console.log(index);
+    document.getElementById("miles").value = MY_TRIP_COST[index].miles
+    document.getElementById("gallons").value = MY_TRIP_COST[index].gallons
+    document.getElementById("price").value = MY_TRIP_COST[index].price
     })
     buttons.appendChild(editButton);
     buttons.appendChild(deleteButton)
