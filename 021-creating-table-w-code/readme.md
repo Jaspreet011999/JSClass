@@ -8,3 +8,6 @@
 
 # Our object is not aligned with our headings
  - We can create a new array of objects, and arrange our key value pairs as per our table headings
+
+ # How we can fix the rendering table issue
+ -create an if statement that will check whether there is an existing table row. If it exists, the new row should be added to the existing table instead of creating a new table

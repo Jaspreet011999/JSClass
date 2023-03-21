@@ -79,6 +79,16 @@ function createTableRows(table){
       console.log(td);
       tr.appendChild(td)
     }
+    
+    const buttons = document.createElement('td');
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit'
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete'
+    
+    buttons.appendChild(editButton);
+    buttons.appendChild(deleteButton)
+    tr.appendChild(buttons)
     table.appendChild(tr);
     
   })
