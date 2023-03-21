@@ -11,3 +11,6 @@
 
  # How we can fix the rendering table issue
  -create an if statement that will check whether there is an existing table row. If it exists, the new row should be added to the existing table instead of creating a new table
+
+# To fix the rendering issues
+ -New child contains parent .We could use (Append) rather than(Appendchild)?

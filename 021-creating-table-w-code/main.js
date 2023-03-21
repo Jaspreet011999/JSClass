@@ -69,6 +69,23 @@ function isFormValid  (miles, gallons, price) {
   }
 };
 
+function showEditDeleteButtons(tr){
+
+  const buttons = document.createElement('td');
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit'
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete'
+    
+    buttons.appendChild(editButton);
+    buttons.appendChild(deleteButton)
+    tr.appendChild(buttons)
+
+    return tr
+    
+}
+
+
 function createTableRows(table){
 
   MY_TRIP_COST.forEach(function(obj){
@@ -80,21 +97,15 @@ function createTableRows(table){
       tr.appendChild(td)
     }
     
-    const buttons = document.createElement('td');
-    const editButton = document.createElement('button');
-    editButton.textContent = 'Edit'
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete'
-    
-    buttons.appendChild(editButton);
-    buttons.appendChild(deleteButton)
-    tr.appendChild(buttons)
+    const buttonTd = showEditDeleteButtons(tr)
+    tr.appendChild(buttonTd)
     table.appendChild(tr);
-    
   })
 }
 
 function renderTable(){
+
+  TABLE_TO_SHOW.innerHTML = ''
   const table = document.createElement('table');
   const headings = ['Miles Driven','Gallons Used','Price Paid','Trip MPG','Trip Cost','Edit/Delete' ]
   const tr = document.createElement('tr')
