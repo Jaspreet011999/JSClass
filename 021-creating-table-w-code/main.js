@@ -69,7 +69,7 @@ function isFormValid  (miles, gallons, price) {
   }
 };
 
-function showEditDeleteButtons(tr){
+function showEditDeleteButtons(){
 
   const buttons = document.createElement('td');
     const editButton = document.createElement('button');
@@ -79,9 +79,8 @@ function showEditDeleteButtons(tr){
     
     buttons.appendChild(editButton);
     buttons.appendChild(deleteButton)
-    tr.appendChild(buttons)
 
-    return tr
+    return buttons
     
 }
 
@@ -97,8 +96,8 @@ function createTableRows(table){
       tr.appendChild(td)
     }
     
-    const buttonTd = showEditDeleteButtons(tr)
-    tr.appendChild(buttonTd)
+    const buttons = showEditDeleteButtons()
+    tr.appendChild(buttons)
     table.appendChild(tr);
   })
 }
