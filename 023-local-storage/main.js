@@ -3,7 +3,19 @@ const ERR = document.getElementById("err");
 const AVG_OUTPUT = document.getElementById("avg_output");
 const TABLE_TO_SHOW = document.getElementById("table_to_show");
 
-const MY_TRIP_COST = [];
+function getTripData(){
+
+  const tripDataJSON = localStorage.getItem('tripData')
+  if(tripDataJSON !== null){
+    return JSON.parse(tripDataJSON)
+  }else {
+    return []
+  }
+}
+
+const MY_TRIP_COST = getTripData();
+renderTable()
+
 
 //update the DOM
 
@@ -28,8 +40,6 @@ function trackMPGandCost  (miles, gallons, price)  {
 };
 
 
-
-
 function calculateAverages () {
   let totalMPG = 0;
   let totalTripCost = 0;
@@ -39,8 +49,8 @@ function calculateAverages () {
   });
   const averageMPG = Math.round(totalMPG / MY_TRIP_COST.length);
   const averageTripCost = Math.round(totalTripCost / MY_TRIP_COST.length);
-  updateDOM(`Average MPG is ${averageMPG}`);
-  updateDOM(`Average Trip Cost is ${averageTripCost}`);
+  // updateDOM(`Average MPG is ${averageMPG}`);
+  // updateDOM(`Average Trip Cost is ${averageTripCost}`);
 };
 
 function isFormValid  (miles, gallons, price) {
@@ -145,5 +155,6 @@ FORM.addEventListener("submit", (e) => {
     renderTable();
     calculateAverages();
   }
+  localStorage.setItem('tripData', JSON.stringify(MY_TRIP_COST))
   FORM.reset();
 });
