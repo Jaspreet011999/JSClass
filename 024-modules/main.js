@@ -1,6 +1,6 @@
 import { renderTable } from "./render.js";
 import { getTripData, saveTripData } from "./storage.js";
-
+import { trackMPGandCost, calculateAverages } from "./calculations.js";
 const FORM = document.getElementById("form-input");
 const ERR = document.getElementById("err");
 const AVG_OUTPUT = document.getElementById("avg_output");
@@ -15,32 +15,6 @@ function updateDOM(input) {
   const j = document.createElement("div");
   j.textContent = input;
   divEl.appendChild(j);
-}
-
-function trackMPGandCost(miles, gallons, price) {
-  const MPG = Math.round(miles / gallons);
-  const tripCost = Math.round(gallons * price);
-  //updateDOM(`Miles per gallon is ${MPG} and trip cost ${tripCost}`, `#output`);
-  return {
-    miles: miles,
-    gallons: gallons,
-    price: price,
-    MPG: MPG,
-    tripCost: tripCost,
-  };
-}
-
-function calculateAverages() {
-  let totalMPG = 0;
-  let totalTripCost = 0;
-  MY_TRIP_COST.forEach((obj) => {
-    totalMPG += obj.MPG;
-    totalTripCost += obj.tripCost;
-  });
-  const averageMPG = Math.round(totalMPG / MY_TRIP_COST.length);
-  const averageTripCost = Math.round(totalTripCost / MY_TRIP_COST.length);
-  updateDOM(`Average MPG is ${averageMPG}`);
-  updateDOM(`Average Trip Cost is ${averageTripCost}`);
 }
 
 function isFormValid(miles, gallons, price) {
@@ -79,7 +53,7 @@ FORM.addEventListener("submit", (e) => {
     MY_TRIP_COST.push(updateDataObj);
     saveTripData(MY_TRIP_COST);
     renderTable(MY_TRIP_COST);
-    calculateAverages();
+    calculateAverages(MY_TRIP_COST);
   }
 
   FORM.reset();
