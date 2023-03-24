@@ -1,3 +1,5 @@
+import { saveTripData } from "./storage.js";
+
 const FORM = document.getElementById("form-input");
 const TABLE_TO_SHOW = document.getElementById("table_to_show");
 
@@ -18,7 +20,7 @@ function showEditDeleteButtons(index, MY_TRIP_COST) {
 
   deleteButton.addEventListener("click", function (e) {
     MY_TRIP_COST.splice(index, 1);
-    saveTripData();
+    saveTripData(MY_TRIP_COST);
     renderTable(MY_TRIP_COST);
   });
   buttons.appendChild(editButton);

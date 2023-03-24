@@ -1,21 +1,9 @@
 import { renderTable } from "./render.js";
+import { getTripData, saveTripData } from "./storage.js";
 
 const FORM = document.getElementById("form-input");
 const ERR = document.getElementById("err");
 const AVG_OUTPUT = document.getElementById("avg_output");
-
-function getTripData() {
-  const tripDataJSON = localStorage.getItem("tripData");
-  if (tripDataJSON !== null) {
-    return JSON.parse(tripDataJSON);
-  } else {
-    return [];
-  }
-}
-
-function saveTripData() {
-  localStorage.setItem("tripData", JSON.stringify(MY_TRIP_COST));
-}
 
 const MY_TRIP_COST = getTripData();
 renderTable(MY_TRIP_COST);
@@ -89,7 +77,7 @@ FORM.addEventListener("submit", (e) => {
     AVG_OUTPUT.textContent = "";
     const updateDataObj = trackMPGandCost(miles, gallons, price);
     MY_TRIP_COST.push(updateDataObj);
-    saveTripData();
+    saveTripData(MY_TRIP_COST);
     renderTable(MY_TRIP_COST);
     calculateAverages();
   }
