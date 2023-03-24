@@ -17,7 +17,7 @@ function updateDOM  (input)  {
 function trackMPGandCost  (miles, gallons, price)  {
   const MPG = Math.round(miles / gallons);
   const tripCost = Math.round(gallons * price);
-  updateDOM(`Miles per gallon is ${MPG} and trip cost ${tripCost}`, `#output`);
+  //updateDOM(`Miles per gallon is ${MPG} and trip cost ${tripCost}`, `#output`);
   return {
     miles: miles,
     gallons: gallons,
