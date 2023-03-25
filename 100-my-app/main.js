@@ -1,5 +1,6 @@
-// Declare the global variables
+const form = document.getElementById("form");
 
+// Declare the global variabconst form = document.querySelector('form');les
 const money = 100;
 const missingGroceries = ["vegetables", "fruits", "snacks"];
 
@@ -50,6 +51,25 @@ function buyGroceries(
   return groceriesData;
 }
 
-buyGroceries(90, 10, 15, true, true, 6);
-buyGroceries(90, 10, 15, true, false, 6);
-buyGroceries(90, 10, 15, true, true, 1);
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const itemPrice = parseInt(document.querySelector("#itemPrice").value);
+  const quantity = parseInt(document.querySelector("#quantity").value);
+  const discount = parseInt(document.querySelector("#discount").value);
+  const discountStore = document.querySelector("#discountStore").checked;
+  const isFresh = document.querySelector("#isFresh").checked;
+  const expiryDate = parseInt(document.querySelector("#expiryDate").value);
+
+  // store the inputs in formData object
+  const formData = {
+    itemPrice: itemPrice,
+    quantity: quantity,
+    discount: discount,
+    discountStore: discountStore,
+    isFresh: isFresh,
+    expiryDate: expiryDate,
+  };
+
+  // Log the input data to the console
+  console.log(formData);
+});
