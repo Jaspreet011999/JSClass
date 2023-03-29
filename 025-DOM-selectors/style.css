@@ -17,3 +17,6 @@ table, th, td{
     padding: 8px
 
 }
+.table-button {
+    border-bottom: 3px;
+}

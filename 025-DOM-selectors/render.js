@@ -16,6 +16,10 @@ function showEditDeleteButtons(index, MY_TRIP_COST) {
     document.getElementById("gallons").value = MY_TRIP_COST[index].gallons;
     document.getElementById("price").value = MY_TRIP_COST[index].price;
     MY_TRIP_COST.splice(index, 1);
+     const disable_buttons = document.querySelectorAll('.table-button')
+     disable_buttons.forEach(function(btn){
+      btn.setAttribute('disabled', true)
+     })
   });
 
   deleteButton.addEventListener("click", function (e) {
@@ -23,6 +27,9 @@ function showEditDeleteButtons(index, MY_TRIP_COST) {
     saveTripData(MY_TRIP_COST);
     renderTable(MY_TRIP_COST);
   });
+  editButton.classList.add('table-button')
+  deleteButton.classList.add('table-button')
+
   buttons.appendChild(editButton);
   buttons.appendChild(deleteButton);
   
