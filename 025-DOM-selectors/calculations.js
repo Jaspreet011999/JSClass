@@ -7,8 +7,8 @@ function updateDOM(input) {
 
 
 function trackMPGandCost(miles, gallons, price) {
-  const MPG = Math.round(miles / gallons);
-  const tripCost = Math.round(gallons * price);
+  const MPG = Number((miles / gallons).toFixed(2));
+  const tripCost = Number((gallons * price).toFixed(2));
   //updateDOM(`Miles per gallon is ${MPG} and trip cost ${tripCost}`, `#output`);
   return {
     miles: miles,
@@ -26,8 +26,8 @@ function calculateAverages(MY_TRIP_COST) {
     totalMPG += obj.MPG;
     totalTripCost += obj.tripCost;
   });
-  const averageMPG = Math.round(totalMPG / MY_TRIP_COST.length);
-  const averageTripCost = Math.round(totalTripCost / MY_TRIP_COST.length);
+  const averageMPG = Number((totalMPG / MY_TRIP_COST.length).toFixed(2));
+  const averageTripCost = Number((totalTripCost / MY_TRIP_COST.length).toFixed(2));
   updateDOM(`Average MPG is ${averageMPG}`);
   updateDOM(`Average Trip Cost is ${averageTripCost}`);
 }
