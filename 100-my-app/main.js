@@ -1,8 +1,8 @@
-const form = document.getElementById("form");
+const FORM = document.getElementById("form");
 
-// Declare the global variabconst form = document.querySelector('form');les
-const money = 100;
-const missingGroceries = ["vegetables", "fruits", "snacks"];
+// Declare the global variabconst 
+const MONEY = 100;
+const MISSING_GROCERIES = ["vegetables", "fruits", "snacks"];
 
 function buyGroceries(
   itemPrice,
@@ -14,7 +14,7 @@ function buyGroceries(
 ) {
   let decision;
 
-  if (money >= 100 && missingGroceries.length !== 0) {
+  if (MONEY >= 100 && MISSING_GROCERIES.length !== 0) {
     decision = "I am going to the grocery store";
 
     if (discountStore) {
@@ -51,7 +51,7 @@ function buyGroceries(
   return groceriesData;
 }
 
-form.addEventListener("submit", function (event) {
+FORM.addEventListener("submit", function (event) {
   event.preventDefault();
   const itemPrice = parseInt(document.querySelector("#itemPrice").value);
   const quantity = parseInt(document.querySelector("#quantity").value);
