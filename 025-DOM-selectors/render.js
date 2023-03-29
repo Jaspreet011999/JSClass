@@ -25,6 +25,7 @@ function showEditDeleteButtons(index, MY_TRIP_COST) {
   });
   buttons.appendChild(editButton);
   buttons.appendChild(deleteButton);
+  
 
   return buttons;
 }
