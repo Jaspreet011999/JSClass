@@ -26,14 +26,15 @@ function calculateAverages(MY_TRIP_COST) {
   //   totalMPG += obj.MPG;
   //   totalTripCost += obj.tripCost;
   // });
-  const totalMPG = MY_TRIP_COST.reduce(function(sum, obj){
+  const totals = MY_TRIP_COST.reduce(function(sum, obj){
     return {
       MPG: sum.MPG + obj.MPG,
       tripCost: sum.tripCost + obj.tripCost
     }
-  },0)
-  const averageMPG = Number((totalMPG / MY_TRIP_COST.length).toFixed(2));
-  const averageTripCost = Number((totalTripCost / MY_TRIP_COST.length).toFixed(2));
+  })
+  console.log(totals);
+  const averageMPG = Number((totals.MPG / MY_TRIP_COST.length).toFixed(2));
+  const averageTripCost = Number((totals.tripCost / MY_TRIP_COST.length).toFixed(2));
   updateDOM(`Average MPG is ${averageMPG}`);
   updateDOM(`Average Trip Cost is ${averageTripCost}`);
 }
