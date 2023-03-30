@@ -1,10 +1,11 @@
+const AVG_OUTPUT = document.getElementById("avg_output");
+
 function updateDOM(input) {
   const divEl = document.querySelector("#output");
   const j = document.createElement("div");
   j.textContent = input;
   divEl.appendChild(j);
 }
-
 
 function trackMPGandCost(miles, gallons, price) {
   const MPG = Number((miles / gallons).toFixed(2));
@@ -20,21 +21,18 @@ function trackMPGandCost(miles, gallons, price) {
 }
 
 function calculateAverages(MY_TRIP_COST) {
-  // let totalMPG = 0;
-  // let totalTripCost = 0;
-  // MY_TRIP_COST.forEach((obj) => {
-  //   totalMPG += obj.MPG;
-  //   totalTripCost += obj.tripCost;
-  // });
-  const totals = MY_TRIP_COST.reduce(function(sum, obj){
+  AVG_OUTPUT.innerHTML = "";
+  const totals = MY_TRIP_COST.reduce(function (sum, obj) {
     return {
       MPG: sum.MPG + obj.MPG,
-      tripCost: sum.tripCost + obj.tripCost
-    }
-  })
+      tripCost: sum.tripCost + obj.tripCost,
+    };
+  });
   console.log(totals);
   const averageMPG = Number((totals.MPG / MY_TRIP_COST.length).toFixed(2));
-  const averageTripCost = Number((totals.tripCost / MY_TRIP_COST.length).toFixed(2));
+  const averageTripCost = Number(
+    (totals.tripCost / MY_TRIP_COST.length).toFixed(2)
+  );
   updateDOM(`Average MPG is ${averageMPG}`);
   updateDOM(`Average Trip Cost is ${averageTripCost}`);
 }

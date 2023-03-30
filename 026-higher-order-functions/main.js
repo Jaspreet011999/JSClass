@@ -1,15 +1,14 @@
 import { renderTable } from "./render.js";
 import { getTripData, saveTripData } from "./storage.js";
 import { trackMPGandCost, calculateAverages } from "./calculations.js";
+
 const FORM = document.getElementById("form-input");
 const ERR = document.getElementById("err");
-const AVG_OUTPUT = document.getElementById("avg_output");
 
 const MY_TRIP_COST = getTripData();
 renderTable(MY_TRIP_COST);
 
 //update the DOM
-
 
 function isFormValid(miles, gallons, price) {
   const errMsg = [];
@@ -42,7 +41,6 @@ FORM.addEventListener("submit", (e) => {
   const isValid = isFormValid(miles, gallons, price);
   if (isValid) {
     ERR.textContent = "";
-    AVG_OUTPUT.textContent = "";
     const updateDataObj = trackMPGandCost(miles, gallons, price);
     MY_TRIP_COST.push(updateDataObj);
     saveTripData(MY_TRIP_COST);
