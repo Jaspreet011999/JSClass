@@ -1,8 +1,10 @@
 const FORM = document.getElementById("form");
 
-// Declare the global variabconst 
+// Declare the global variabconst
 const MONEY = 100;
 const MISSING_GROCERIES = ["vegetables", "fruits", "snacks"];
+
+let inputData = [];
 
 function buyGroceries(
   itemPrice,
@@ -39,13 +41,12 @@ function buyGroceries(
     decision = "I am not going to the grocery store";
   }
   const groceriesData = {
+    quantity: quantity,
     itemPrice: itemPrice,
     discountStore: discountStore,
     discount: discount,
     isFresh: isFresh,
     expiryDate: expiryDate,
-    total: total,
-    decision: decision,
   };
 
   return groceriesData;
@@ -53,23 +54,55 @@ function buyGroceries(
 
 FORM.addEventListener("submit", function (event) {
   event.preventDefault();
-  const itemPrice = parseInt(document.querySelector("#itemPrice").value);
-  const quantity = parseInt(document.querySelector("#quantity").value);
-  const discount = parseInt(document.querySelector("#discount").value);
-  const discountStore = document.querySelector("#discountStore").checked;
-  const isFresh = document.querySelector("#isFresh").checked;
-  const expiryDate = parseInt(document.querySelector("#expiryDate").value);
+  const itemPrice = parseFloat(document.getElementById("itemPrice").value);
+  const quantity = parseInt(document.getElementById("quantity").value);
+  const discount = parseInt(document.getElementById("discount").value);
+  const discountStore = document.getElementById("discountStore").checked;
+  const isFresh = document.getElementById("isFresh").checked;
+  const expiryDate = document.getElementById("expiryDate").value;
 
-  // store the inputs in formData object
-  const formData = {
-    itemPrice: itemPrice,
-    quantity: quantity,
-    discount: discount,
-    discountStore: discountStore,
-    isFresh: isFresh,
-    expiryDate: expiryDate,
-  };
+  if (
+    !itemPrice ||
+    itemPrice <= 0 ||
+    !quantity ||
+    quantity <= 0 ||
+    !discount ||
+    discount < 0 ||
+    discount > 100 ||
+    expiryDate <= 0
+  ) {
+    alert("Please fill in all required fields with valid values.");
+    return;
+  }
 
-  // Log the input data to the console
-  console.log(formData);
+  const groceriesData = buyGroceries(
+    itemPrice,
+    quantity,
+    discount,
+    discountStore,
+    isFresh,
+    expiryDate
+  );
+
+  inputData.push(groceriesData);
+  console.log("Grocery list:", inputData);
+  updateDOM("Here is the data you input:");
+  updateDOM(` Itemprice: ${inputData[0].itemPrice}`);
+  updateDOM(` Quantity: ${inputData[0].quantity}`);
+  updateDOM(`Discount: ${inputData[0].discount}`);
+  updateDOM(` Discount Store: ${inputData[0].discountStore}`);
+  updateDOM(` Fresh: ${inputData[0].isFresh}`);
+  updateDOM(` Expiry Date: ${inputData[0].expiryDate}`);
+  clearForm();
 });
+
+function updateDOM(input) {
+  const divEl = document.querySelector("#output");
+  const j = document.createElement("div");
+  j.textContent = input;
+  divEl.appendChild(j);
+}
+
+function clearForm() {
+  FORM.reset();
+}
