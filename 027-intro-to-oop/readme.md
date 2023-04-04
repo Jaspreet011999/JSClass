@@ -1,0 +1,2 @@
+# Week 13
+- We are now creating objects using a constructor method, which takes arguments, inside which we declare properties of our object.  Previously we used to create objects by writing the key, and value. 
