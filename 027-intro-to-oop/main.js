@@ -30,13 +30,13 @@ class Person {
 class Student extends Person {
   constructor(firstName, lastName, address, classList) {
     super(firstName, lastName, address);
-    this.classList = classList;
+    this._classList = classList;
   }
   getClassList() {
-    return `${this.classList}`;
+    return `${this._classList}`;
   }
   setClassList(newClassList) {
-    this.classList = newClassList;
+    this._classList = newClassList;
   }
   showStatus() {
     console.log(
