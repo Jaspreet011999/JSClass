@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width , initial-scale=1.0">
+        <title> Document</title>
+        <link rel="stylesheet" href="style.css">
+        <script type="module" src="render.js"></script>
+        <script type="module" src="calculations.js"></script>
+        <script type="module" src="main.js" defer></script>
+    </head>
+    <body>
+        <h1>Getting User Input</h1>
+        <div class="centered">
+           
+        <form id="form-input">
+            <div>
+                <labels>Miles<input id="miles" name="miles" type="number" step="any" required></labels>
+            </div>
+            <div>
+                <labels>Gallons<input id="gallons" name="gallons" type="number"step="any"  required></labels>
+            </div>
+            <div>
+                <labels>Price<input id="price" name="price"type="number" step="any" required></labels>
+                <button>submit</button>
+            </div>
+        </div>
+        </form>
+        <div id="output"></div>
+      <!-- <table>
+        <tr>
+           <th>heading</th>
+            <th>heading</th>
+            <th>heading</th>
+            <th>heading</th>
+            <th>heading</th>
+            <th>heading</th>
+            <tr>
+                <td>row</td>
+                <td>row</td>
+                <td>row</td>
+                <td>row</td>
+                <td>row</td>
+                <td>row</td>
+            </tr>
+        </tr>
+      </table> -->
+        <div id="table_to_show"></div>
+
+        <div id="err" class="error"></div>
+        <div id="avg_output"></div>
+    </body>
+ 
