@@ -1,11 +1,27 @@
-let pizza;
+// let pizza;
 
-function orderPizza() {
-  console.log("Order pizza");
+// function orderPizza() {
+//   console.log("Order pizza");
+//   setTimeout(() => {
+//     pizza = "🍕";
+//     console.log(`${pizza} is ready`);
+//   }, 2000);
+//   console.log("Pizza was ordered");
+// }
+// orderPizza();
+// console.log('Call Qoli');
+// console.log(`Eat ${pizza}`);
+
+function orderPizza(callback) {
   setTimeout(() => {
-    pizza = "🍕";
+    const pizza = "🍕";
+    callback(pizza);
   }, 2000);
-  console.log("Pizza was ordered");
 }
-orderPizza();
-console.log(`Eat ${pizza}`);
+
+function pizzaReady(pizza) {
+  console.log(`Eat ${pizza}`);
+}
+
+orderPizza(pizzaReady);
+console.log("Call Qoli");
