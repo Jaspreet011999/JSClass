@@ -25,3 +25,17 @@ function pizzaReady(pizza) {
 
 orderPizza(pizzaReady);
 console.log("Call Qoli");
+
+
+function thing1(callback) {
+    //call pizza shop
+    callback()
+}
+function thing1(callback) {
+    //orderpizza
+    callback()
+}
+function thing1(callback) {
+    //eat pizza
+    callback()
+}
