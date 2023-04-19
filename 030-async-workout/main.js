@@ -4,43 +4,23 @@ const OUTPUT = document.getElementById("output");
 FORM.addEventListener("submit", function (e) {
   e.preventDefault();
   const type = e.target.type.value;
-  const reps = parseFloat(e.target.type.value);
-  const time = parseFloat(e.target.type.value);
+  const reps = parseFloat(e.target.reps.value);
+  const time = parseFloat(e.target.time.value);
+  exerciseRoutine(type, reps, time, updateDOM);
   FORM.reset();
-
-  exerciseRoutine(type, reps, time, updateType, updateReps, updateComplete);
 });
-function exerciseRoutine(
-  type,
-  reps,
-  time,
-  typeCallback,
-  repsCallback,
-  completeCallback
-) {
+function exerciseRoutine(type, reps, time, fn) {
+  // Synchronously update the DOM with the exercise type and number of reps
+  fn(`The exercise is ${type} and the target reps is ${reps}`);
+  //Asynchronous
   setTimeout(() => {
-    // Synchronously update the DOM with the exercise type and number of reps
-    typeCallback(type);
-    repsCallback(reps);
-
-    setTimeout(() => {
-      // Once the exercise routine is complete, update the DOM asynchronously
-      completeCallback();
-    }, time * 60000); // Convert exercise time to milliseconds
-  }, 2000); // Let's say this is processed in 2 seconds of processing time
+    // Once the exercise routine is complete, update the DOM asynchronously
+    fn(`The ${type} exercise is complete`, "div");
+  }, time * 1000); // Convert exercise time to milliseconds
 }
 
-function updateType(type) {
-  const typeElement = document.getElementById("output");
-  typeElement.textContent = type;
-}
-
-function updateReps(reps) {
-  const repsElement = document.getElementById("output");
-  repsElement.textContent = reps;
-}
-
-function updateComplete() {
-  const statusElement = document.getElementById("output");
-  statusElement.textContent = "Exercise complete!";
+function updateDOM(message, element) {
+  const newElement = document.createElement(element);
+  newElement.textContent = message;
+  OUTPUT.appendChild(newElement);
 }
