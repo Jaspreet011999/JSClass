@@ -89,4 +89,4 @@ function onError(error){
 
 fetchData()
 .then(displayData)
-.catch(onError)
+.catch(onError) 

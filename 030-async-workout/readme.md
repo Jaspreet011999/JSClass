@@ -5,3 +5,6 @@
 
 # What else we could do to the code
 - We can add a timer to countdown time remaining until exercise is complete. 
+
+# My attempt at adding a promise in the workout code
+- I attempted to add a promise inside function exerciseRoutine, which is resolved when the exercise is completed. The code works, but I have one error in the console(type is not defined)
