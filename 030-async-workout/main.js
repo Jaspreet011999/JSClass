@@ -6,18 +6,19 @@ FORM.addEventListener("submit", function (e) {
   const type = e.target.type.value;
   const reps = parseFloat(e.target.reps.value);
   const time = parseFloat(e.target.time.value);
-  exerciseRoutine(type, reps, time, updateDOM);
+  exerciseRoutine(type, reps, time, updateDOM)
+    .then()
+    .catch(onError)
   FORM.reset();
 });
 function exerciseRoutine(type, reps, time, fn) {
-  return new Promise ((resolve, reject) => { 
-  // Synchronously update the DOM with the exercise type and number of reps
-  fn(`The exercise is ${type} and the target reps is ${reps}`);
+// Synchronously update the DOM with the exercise type and number of reps
+fn(`The exercise is ${type} and the target reps is ${reps}`);
+  return new Promise (function (resolve, reject){ 
   //Asynchronous
   setTimeout(() => {
     // Once the exercise routine is complete, update the DOM asynchronously
-    fn(`The ${type} exercise is complete`, "div");
-    resolve();
+    resolve(fn(`The ${type} exercise is complete`, "div"));
   }, time * 1000); // Convert exercise time to milliseconds
  });
 }
@@ -27,7 +28,7 @@ function updateDOM(message, element) {
   newElement.textContent = message;
   OUTPUT.appendChild(newElement);
 }
+function onError(err) {
+  console.log(`Error ${err}`);
+}
 
-exerciseRoutine(type, reps, time, updateDOM)
-.then(() => updateDOM)
-  .catch((err) => console.error(err));
