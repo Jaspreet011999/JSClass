@@ -15,8 +15,8 @@ function buyGroceries(
   quantity,
   discount,
   discountStore,
-  isFresh,
-  expiryDate
+  isFresh
+  // expiryDate
 ) {
   if (MONEY >= 100 && MISSING_GROCERIES.length !== 0) {
     decision = "I am going to the grocery store";
@@ -26,15 +26,15 @@ function buyGroceries(
         "We are going to this grocery store because groceries will be affordable";
 
       if (isFresh) {
-        decision = "Let's proceed and check expiry date before we buy";
+        decision = "Let's proceed and buy groceries";
 
-        if (expiryDate >= 5) {
-          total = itemPrice * quantity * ((100 - discount) / 100);
-          decision = "Let's proceed and buy groceries";
-        } else {
-          decision =
-            "I will not buy from this store groceries are expriring soon";
-        }
+        // if (expiryDate >= 5) {
+        //   total = itemPrice * quantity * ((100 - discount) / 100);
+        //   decision = "Let's proceed and buy groceries";
+        // } else {
+        //   decision =
+        //     "I will not buy from this store groceries are expriring soon";
+        // }
       } else {
         decision = "I will not buy from this store because food is not fresh";
       }
@@ -50,7 +50,7 @@ function buyGroceries(
     discountStore: discountStore,
     discount: discount,
     isFresh: isFresh,
-    expiryDate: expiryDate,
+    // expiryDate: expiryDate,
   };
 
   return groceriesData;
@@ -63,7 +63,7 @@ FORM.addEventListener("submit", function (event) {
   const discount = parseInt(document.getElementById("discount").value);
   const discountStore = document.getElementById("discountStore").checked;
   const isFresh = document.getElementById("isFresh").checked;
-  const expiryDate = document.getElementById("expiryDate").value;
+  // const expiryDate = document.getElementById("expiryDate").value;
 
   const errMsg = [];
 
@@ -74,8 +74,8 @@ FORM.addEventListener("submit", function (event) {
     quantity <= 0 ||
     !discount ||
     discount < 0 ||
-    discount > 100 ||
-    expiryDate <= 0
+    discount > 100
+    // expiryDate <= 0
   ) {
     errMsg.push("Please fill in all required fields with valid values.");
     ERR.textContent = errMsg;
@@ -87,21 +87,22 @@ FORM.addEventListener("submit", function (event) {
     quantity,
     discount,
     discountStore,
-    isFresh,
-    expiryDate
+    isFresh
+    // expiryDate
   );
 
   inputData.push(groceriesData);
   console.log("Grocery list:", inputData);
-  updateDOM("Here is the data you input:");
-  updateDOM(` Itemprice: ${inputData[0].itemPrice}`);
-  updateDOM(` Quantity: ${inputData[0].quantity}`);
-  updateDOM(`Discount: ${inputData[0].discount}`);
-  updateDOM(` Discount Store: ${inputData[0].discountStore}`);
-  updateDOM(` Fresh: ${inputData[0].isFresh}`);
-  updateDOM(` Expiry Date: ${inputData[0].expiryDate}`);
+  // updateDOM("Here is the data you input:");
+  // updateDOM(` Itemprice: ${inputData[0].itemPrice}`);
+  // updateDOM(` Quantity: ${inputData[0].quantity}`);
+  // updateDOM(`Discount: ${inputData[0].discount}`);
+  // updateDOM(` Discount Store: ${inputData[0].discountStore}`);
+  // updateDOM(` Fresh: ${inputData[0].isFresh}`);
+  // updateDOM(` Expiry Date: ${inputData[0].expiryDate}`);
   clearForm();
 
+  renderGroceriesList();
   renderDecision();
 });
 
@@ -119,6 +120,45 @@ function renderDecision() {
   decisionMsg.push(`${decision}`);
   SHOW_DECISION.textContent = decisionMsg;
 }
+
+function renderGroceriesList() {
+  const divEl = document.querySelector("#groceriesList");
+
+  // Remove all existing children elements to prevent duplication
+  while (divEl.firstChild) {
+    divEl.removeChild(divEl.firstChild);
+  }
+
+  for (let i = 0; i < inputData.length; i++) {
+    const { quantity, itemPrice, discountStore, isFresh } = inputData[i];
+
+    // Create a new HTML element to display the object
+    const groceryItemEl = document.createElement("div");
+    groceryItemEl.classList.add("grocery-item");
+
+    const quantityEl = document.createElement("div");
+    quantityEl.textContent = `Quantity: ${quantity}`;
+    groceryItemEl.appendChild(quantityEl);
+
+    const itemPriceEl = document.createElement("div");
+    itemPriceEl.textContent = `Item Price: $${itemPrice.toFixed(2)}`;
+    groceryItemEl.appendChild(itemPriceEl);
+
+    const discountStoreEl = document.createElement("div");
+    discountStoreEl.textContent = `Discount Store: ${
+      discountStore ? "Yes" : "No"
+    }`;
+    groceryItemEl.appendChild(discountStoreEl);
+
+    const isFreshEl = document.createElement("div");
+    isFreshEl.textContent = `Fresh: ${isFresh ? "Yes" : "No"}`;
+    groceryItemEl.appendChild(isFreshEl);
+
+    // Add the new element to the parent container
+    divEl.appendChild(groceryItemEl);
+  }
+}
+
 function clearForm() {
   FORM.reset();
 }

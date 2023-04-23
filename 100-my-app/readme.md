@@ -6,3 +6,6 @@
 # Week 13
 - Our decision is based on our input. So upon filling all values, and clicking submit, our decision is generatd based on the input. So I will update DOM with the generated decision. 
 - I don't think edit/delete would apply in the my scenario. 
+
+# Week 14 
+- I'm still working on the Edit/Delete function in my app. I'm trying to figure out where I should put it. I removed the expiry date. I figured out I won't need it because I have isFresh. 
