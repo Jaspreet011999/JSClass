@@ -116,8 +116,9 @@ function updateDOM(input) {
 function renderDecision() {
   console.log(decision);
   const decisionMsg = [];
-  decisionMsg.push("Here is the decision based on the data you input: ");
-  decisionMsg.push(`${decision}`);
+  decisionMsg.push(
+    `Here is the decision based on the data you input: ${decision}`
+  );
   SHOW_DECISION.textContent = decisionMsg;
 }
 
@@ -153,6 +154,44 @@ function renderGroceriesList() {
     const isFreshEl = document.createElement("div");
     isFreshEl.textContent = `Fresh: ${isFresh ? "Yes" : "No"}`;
     groceryItemEl.appendChild(isFreshEl);
+
+    // Add an edit button to the grocery item
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener("click", () => {
+      // When the edit button is clicked, update the input values for this grocery item
+      document.getElementById("itemPrice").value = itemPrice;
+      document.getElementById("quantity").value = quantity;
+      document.getElementById("discount").value = inputData[i].discount;
+      document.getElementById("discountStore").checked = discountStore;
+      document.getElementById("isFresh").checked = isFresh;
+
+      SHOW_DECISION.textContent = "";
+      // Remove this grocery item from the list
+      inputData.splice(i, 1);
+
+      // Re-render the grocery list
+      renderGroceriesList();
+    });
+    groceryItemEl.appendChild(editBtn);
+
+    // Add a delete button to the grocery item
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.addEventListener("click", () => {
+      // Remove this grocery item from the list
+      inputData.splice(i, 1);
+
+      // Re-render the grocery list
+      renderGroceriesList();
+    });
+    groceryItemEl.appendChild(deleteBtn);
+
+    //Display our decision
+    // const renderDecision = document.createElement("div");
+    // renderDecision.textContent = `Here is the decision based on the data you input: ${decision}`;
+    // renderDecision.style.color = "green";
+    // groceryItemEl.appendChild(renderDecision);
 
     // Add the new element to the parent container
     divEl.appendChild(groceryItemEl);
