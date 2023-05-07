@@ -7,8 +7,20 @@ const MISSING_GROCERIES = ["vegetables", "fruits", "snacks"];
 const ERR = document.getElementById("err");
 const SHOW_DECISION = document.getElementById("decision");
 
-let inputData = [];
 let decision = "";
+let inputData = [];
+
+const savedInputData = localStorage.getItem("inputData");
+if (savedInputData) {
+  inputData = JSON.parse(savedInputData);
+  renderGroceriesList();
+}
+
+const savedDecision = localStorage.getItem("decision");
+if (savedDecision) {
+  decision = savedDecision;
+  renderDecision();
+}
 
 function buyGroceries(
   itemPrice,
@@ -27,14 +39,6 @@ function buyGroceries(
 
       if (isFresh) {
         decision = "Let's proceed and buy groceries";
-
-        // if (expiryDate >= 5) {
-        //   total = itemPrice * quantity * ((100 - discount) / 100);
-        //   decision = "Let's proceed and buy groceries";
-        // } else {
-        //   decision =
-        //     "I will not buy from this store groceries are expriring soon";
-        // }
       } else {
         decision = "I will not buy from this store because food is not fresh";
       }
@@ -93,13 +97,10 @@ FORM.addEventListener("submit", function (event) {
 
   inputData.push(groceriesData);
   console.log("Grocery list:", inputData);
-  // updateDOM("Here is the data you input:");
-  // updateDOM(` Itemprice: ${inputData[0].itemPrice}`);
-  // updateDOM(` Quantity: ${inputData[0].quantity}`);
-  // updateDOM(`Discount: ${inputData[0].discount}`);
-  // updateDOM(` Discount Store: ${inputData[0].discountStore}`);
-  // updateDOM(` Fresh: ${inputData[0].isFresh}`);
-  // updateDOM(` Expiry Date: ${inputData[0].expiryDate}`);
+
+  // Save data to local storage
+  localStorage.setItem("inputData", JSON.stringify(inputData));
+  localStorage.setItem("decision", decision);
   clearForm();
 
   renderGroceriesList();
@@ -155,47 +156,49 @@ function renderGroceriesList() {
     isFreshEl.textContent = `Fresh: ${isFresh ? "Yes" : "No"}`;
     groceryItemEl.appendChild(isFreshEl);
 
-    // Add an edit button to the grocery item
-    const editBtn = document.createElement("button");
-    editBtn.textContent = "Edit";
-    editBtn.addEventListener("click", () => {
-      // When the edit button is clicked, update the input values for this grocery item
-      document.getElementById("itemPrice").value = itemPrice;
-      document.getElementById("quantity").value = quantity;
-      document.getElementById("discount").value = inputData[i].discount;
-      document.getElementById("discountStore").checked = discountStore;
-      document.getElementById("isFresh").checked = isFresh;
-
-      SHOW_DECISION.textContent = "";
-      // Remove this grocery item from the list
-      inputData.splice(i, 1);
-
-      // Re-render the grocery list
-      renderGroceriesList();
-    });
+    // Render the edit and delete buttons
+    const [editBtn, deleteBtn] = renderEditDeleteButtons(i);
     groceryItemEl.appendChild(editBtn);
-
-    // Add a delete button to the grocery item
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
-    deleteBtn.addEventListener("click", () => {
-      // Remove this grocery item from the list
-      inputData.splice(i, 1);
-
-      // Re-render the grocery list
-      renderGroceriesList();
-    });
     groceryItemEl.appendChild(deleteBtn);
-
-    //Display our decision
-    // const renderDecision = document.createElement("div");
-    // renderDecision.textContent = `Here is the decision based on the data you input: ${decision}`;
-    // renderDecision.style.color = "green";
-    // groceryItemEl.appendChild(renderDecision);
 
     // Add the new element to the parent container
     divEl.appendChild(groceryItemEl);
   }
+}
+
+function renderEditDeleteButtons(i) {
+  // Add an edit button to the grocery item
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "Edit";
+  editBtn.addEventListener("click", () => {
+    // When the edit button is clicked, update the input values for this grocery item
+    document.getElementById("itemPrice").value = inputData[i].itemPrice;
+    document.getElementById("quantity").value = inputData[i].quantity;
+    document.getElementById("discount").value = inputData[i].discount;
+    document.getElementById("discountStore").checked =
+      inputData[i].discountStore;
+    document.getElementById("isFresh").checked = inputData[i].isFresh;
+
+    SHOW_DECISION.textContent = "";
+    // Remove this grocery item from the list
+    inputData.splice(i, 1);
+
+    // Re-render the grocery list
+    renderGroceriesList();
+  });
+
+  // Add a delete button to the grocery item
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Delete";
+  deleteBtn.addEventListener("click", () => {
+    // Remove this grocery item from the list
+    inputData.splice(i, 1);
+
+    // Re-render the grocery list
+    renderGroceriesList();
+  });
+
+  return [editBtn, deleteBtn];
 }
 
 function clearForm() {

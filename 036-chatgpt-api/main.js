@@ -1,6 +1,6 @@
 // Define the API endpoint and your API key
 const endpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
-const apiKey = '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';
+const apiKey = '';
 
 // Define the request body for the API call
 const requestBody = {
